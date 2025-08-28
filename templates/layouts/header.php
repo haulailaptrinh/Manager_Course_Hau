@@ -5,9 +5,10 @@ if (!defined('_HAU')) {
 ?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE v4 | Dashboard</title>
+    <title><?php echo $data['title']?></title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE v4 | Dashboard" />
@@ -77,12 +78,12 @@ if (!defined('_HAU')) {
                             <!--end::User Image-->
                             <!--begin::Menu Footer-->
                             <li class="user-footer">
-                                <a href="#" style="width: 100%;"class="btn btn-default btn-flat">Profile</a>
+                                <a href="#" style="width: 100%;" class="btn btn-default btn-flat">Profile</a>
                             </li>
                             <!--end::Menu Footer-->
-                             <!--begin::Menu Footer-->
+                            <!--begin::Menu Footer-->
                             <li class="user-footer">
-                                <a href="#" style="width: 100%;"class="btn btn-default btn-flat">Profile</a>
+                                <a href="#" style="width: 100%;" class="btn btn-default btn-flat">Profile</a>
                             </li>
                             <!--end::Menu Footer-->
                         </ul>

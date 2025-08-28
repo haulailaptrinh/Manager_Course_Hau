@@ -74,9 +74,9 @@ function filterData($method = '')
                 foreach ($_GET as $key => $value) {
                     $key = strip_tags($key);
                     if (is_array($value)) {
-                        $filterArr[$key] = filter_var($_GET, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+                        $filterArr[$key] = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
                     } else {
-                        $filterArr[$key] = filter_var($_GET, FILTER_SANITIZE_SPECIAL_CHARS);
+                        $filterArr[$key] = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
                     }
                 }
             }
@@ -99,9 +99,9 @@ function filterData($method = '')
                 foreach ($_GET as $key => $value) {
                     $key = strip_tags($key);
                     if (is_array($value)) {
-                        $filterArr[$key] = filter_var($_GET, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+                        $filterArr[$key] = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
                     } else {
-                        $filterArr[$key] = filter_var($_GET, FILTER_SANITIZE_SPECIAL_CHARS);
+                        $filterArr[$key] = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
                     }
                 }
             }

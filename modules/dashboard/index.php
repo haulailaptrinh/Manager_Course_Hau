@@ -2,12 +2,15 @@
 if (!defined('_HAU')) {
     die('Truy cập không hợp lệ');
 }
-  require_once './templates/layouts/header.php';
-  require_once './templates/layouts/sidebar.php';
+  $data = [
+    'title' => 'Hệ thống TrungHau'
+  ];
+  layout('header',$data);
+  layout('sidebar')
 ?>
 <!--begin::App Main-->
 <main class="app-main">
-    <?php require_once './templates/layouts/breadcrumb.php'; ?>
+    <?php layout('breadcrumb')?>
     <!--begin::App Content-->
     <div class="app-content">
         <!--begin::Container-->
@@ -110,5 +113,5 @@ if (!defined('_HAU')) {
 </main>
 <!--end::App Main-->
 <?php 
-    require_once './templates/layouts/footer.php';
+    layout('footer');
 ?>
