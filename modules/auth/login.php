@@ -38,8 +38,40 @@ if (isPost()) {
     }
 
     if(empty($errors)){
-        setSessionFlash('msg','Dữ liệu hợp lệ.');
-        setSessionFlash('msg_type','success');
+        // Kiểm tra dữ liệu
+        $email = $filter['email'];
+        $password = $filter['password'];
+
+        // Kiểm tra email
+        $checkEmail = getOne("SELECT * FROM users WHERE email = '$email'");
+
+        if(!empty($checkEmail)){
+            if(!empty($password)){
+                $checkStatus = password_verify($password,$checkEmail['password']);
+                if($checkStatus){
+                    // Tạo token và insert và bảng token_login
+                    $token = sha1(uniqid() . time());
+                    $data = [   
+                        'user_id' => $checkEmail['id'],
+                        'token' => $token,
+                        'created_at' => date('Y:m:d H:i:s')
+                    ];
+                    $insertToken = insert('token_login',$data);
+                    if($insertToken){
+                        setSessionFlash('msg','Đăng nhập thành công.');
+                        setSessionFlash('msg_type','success');
+
+                        redirect('/');
+                    }else{
+                        setSessionFlash('msg','Đăng nhập không thành công.');
+                        setSessionFlash('msg_type','danger');
+                    }
+                } else{
+                    setSessionFlash('msg','Vui lòng kiểm tra dữ liệu nhập vào.');
+                    setSessionFlash('msg_type','danger');
+                } 
+            }
+        } 
     }else{
         setSessionFlash('msg','Vui lòng kiểm tra dữ liệu nhập vào.');
         setSessionFlash('msg_type','danger');
@@ -75,7 +107,7 @@ $errorsArr = getSessionFlash('errors');
                     </div>
                     <!-- Email input -->
                     <div data-mdb-input-init class="form-outline mb-4">
-                        <input type="text" name="email"   value="<?php 
+                        <input type="text" name="email" value="<?php 
                             if(!empty($oldData)){
                                 echo oldData($oldData, 'email');
                             }
