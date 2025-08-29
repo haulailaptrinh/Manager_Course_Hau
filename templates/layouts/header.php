@@ -2,6 +2,12 @@
 if (!defined('_HAU')) {
     die('Truy cập không hợp lệ');
 }
+
+
+
+if(!isLogin()){
+    redirect('?module=auth&action=login');
+}
 ?>
 <!doctype html>
 <html lang="en">

@@ -3,7 +3,13 @@
 - Validate dữ liệu nhập vào
 - Checl dữ liệu với csdl (email và pass)
 - Dữ liệu khớp tokenlogin -> insert vào bảng token_login (Kiểm tra đăng nhập)
+
+- Kiểm tra đăng nhập:
+    + Gán token_login lên session
+    + Trong header -> lấy token từ session về và so khớp với token trang bảng token_login
+    + Nếu khớp thì điều hướng về trang đích (ko khớp điều hướng về trang login)
 - Điều  hướng đến trang dashboard
+- Đăng nhập tài khoản ở 1 nơi tại 1 thời điểm
 */
 if(!defined('_HAU')){
     die('Truy cập không hợp lệ');
@@ -49,8 +55,19 @@ if (isPost()) {
             if(!empty($password)){
                 $checkStatus = password_verify($password,$checkEmail['password']);
                 if($checkStatus){
-                    // Tạo token và insert và bảng token_login
+                    // TK chỉ login 1 nơi
+                    $user_id = $checkEmail['id'];
+                    $checkAlready = getRows("SELECT * FROM token_login WHERE user_id = '$user_id'");
+                    if($checkAlready > 0){
+                        setSessionFlash('msg','Tài khoản đang được đăng nhập ở 1 nơi khác, vui lòng thử lại sau.');
+                        setSessionFlash('msg_type','danger');
+                        redirect('?module=auth&action=login');
+                    }else{
+                          // Tạo token và insert và bảng token_login
                     $token = sha1(uniqid() . time());
+
+                    // Gán token lên sesion
+                    setSessionFlash('token_login', $token);
                     $data = [   
                         'user_id' => $checkEmail['id'],
                         'token' => $token,
@@ -66,6 +83,8 @@ if (isPost()) {
                         setSessionFlash('msg','Đăng nhập không thành công.');
                         setSessionFlash('msg_type','danger');
                     }
+                    }
+                  
                 } else{
                     setSessionFlash('msg','Vui lòng kiểm tra dữ liệu nhập vào.');
                     setSessionFlash('msg_type','danger');

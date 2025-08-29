@@ -178,7 +178,7 @@ function oldData($oldData,$fieldName){
     return (!empty($oldData[$fieldName])) ? $oldData[$fieldName] : null;
 }
 
-// điều hướng trang 
+// Hàm chuyển hướng 
 function redirect($path, $pathFull = false){
     if($pathFull){
         header("Localtion: $path");
@@ -188,4 +188,17 @@ function redirect($path, $pathFull = false){
         header("Location: $url");
         exit();
     }
+}
+
+// Hàm checklogin
+function isLogin(){
+    $checkLogin = false;
+    $tokenLogin = getSessionFlash('token_login');
+    $checkToken = getOne("SELECT * FROM token_login WHERE token = '$tokenLogin'");
+    if(!empty($checkToken)){
+        $checkLogin = true;
+    }else{
+        removeSession('token_login');
+    }
+    return $checkLogin;
 }
