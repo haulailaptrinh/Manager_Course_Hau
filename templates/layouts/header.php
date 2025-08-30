@@ -89,7 +89,7 @@ if (!isLogin()) {
                             <!--end::Menu Footer-->
                             <!--begin::Menu Footer-->
                             <li class="user-footer">
-                                <a href="#" style="width: 100%;" class="btn btn-default btn-flat">Profile</a>
+                                <a href="?module=auth&action=logout" style="width: 100%;" class="btn btn-default btn-flat">Đăng xuất</a>
                             </li>
                             <!--end::Menu Footer-->
                         </ul>

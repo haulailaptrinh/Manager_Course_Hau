@@ -11,7 +11,7 @@ if (!defined('_HAU')) {
         <!--begin::Copyright-->
         <strong>
             Copyright &copy; 2022-2025&nbsp;
-            <a href="https://adminlte.io" class="text-decoration-none">TrungHau.vn</a>.
+            <a href="#" class="text-decoration-none">TrungHau.vn</a>.
         </strong>
         All rights reserved.
         <!--end::Copyright-->

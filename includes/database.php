@@ -69,7 +69,7 @@ function update($table, $data, $condition = '')
 function delete($table, $condiction)
 {
     global $conn;
-    if (!empty($condition)) {
+    if (!empty($condiction)) {
         $sql = "DELETE FROM $table WHERE $condiction";
     } else {
         $sql = "DELETE FROM $table";

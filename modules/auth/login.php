@@ -67,7 +67,7 @@ if (isPost()) {
                         $token = sha1(uniqid() . time());
 
                         // Gán token lên sesion
-                        setSessionFlash('token_login', $token);
+                        setSession('token_login', $token);
                         $data = [
                             'user_id' => $checkEmail['id'],
                             'token' => $token,
@@ -96,12 +96,13 @@ if (isPost()) {
         setSessionFlash('oldData', $filter);
         setSessionFlash('errors', $errors);
     }
+    $msg = getSessionFlash('msg');
+    $msg_type = getSessionFlash('msg_type');
+    $oldData = getSessionFlash('oldData');
+    $errorsArr = getSessionFlash('errors');
 }
 
-$msg = getSessionFlash('msg');
-$msg_type = getSessionFlash('msg_type');
-$oldData = getSessionFlash('oldData');
-$errorsArr = getSessionFlash('errors');
+
 
 ?>
 
