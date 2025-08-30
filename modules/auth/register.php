@@ -66,16 +66,16 @@ if (isPost()) {
 
     if (empty($errors)) {
         // table: users, data
-        $activeToken = sha1(uniqid().time());
+        $activeToken = sha1(uniqid() . time());
         $data = [
-          'fullname' => $filter['fullname'],
-          'address'  => $filter['address'] ?? '',
-          'phone'    => $filter['phone'],
-          'password' => password_hash($filter['password'], PASSWORD_DEFAULT),
-          'email'    => $filter['email'],
-          'active_token' => $activeToken,
-          'group_id'    => 1,
-          'created_at'  =>  date('Y:m:d H:i:s')
+            'fullname' => $filter['fullname'],
+            'address'  => $filter['address'] ?? '',
+            'phone'    => $filter['phone'],
+            'password' => password_hash($filter['password'], PASSWORD_DEFAULT),
+            'email'    => $filter['email'],
+            'active_token' => $activeToken,
+            'group_id'    => 1,
+            'created_at'  =>  date('Y:m:d H:i:s')
         ];
 
         $insertStatus = insert('users', $data);
@@ -89,17 +89,17 @@ if (isPost()) {
             $content .= 'Cảm ơn các bạn đã ủng hộ TrungHau!!!';
 
             // Gửi Email
-            sendMail($emailTo,$subject,$content);
+            sendMail($emailTo, $subject, $content);
 
-            setSessionFlash('msg','Đăng ký thành công, vui lòng kích hoạt tài khoản.');
-            setSessionFlash('msg_type','success');
+            setSessionFlash('msg', 'Đăng ký thành công, vui lòng kích hoạt tài khoản.');
+            setSessionFlash('msg_type', 'success');
         } else {
-            setSessionFlash('msg','Đăng ký không thành công, vui lòng kích hoạt tài khoản.');
-            setSessionFlash('msg_type','danger');
+            setSessionFlash('msg', 'Đăng ký không thành công, vui lòng kích hoạt tài khoản.');
+            setSessionFlash('msg_type', 'danger');
         }
     } else {
-        setSessionFlash('msg','Vui lòng kiểm tra dữ liệu nhập vào.');
-        setSessionFlash('msg_type','danger');
+        setSessionFlash('msg', 'Vui lòng kiểm tra dữ liệu nhập vào.');
+        setSessionFlash('msg_type', 'danger');
         setSessionFlash('oldData', $filter);
         setSessionFlash('errors', $errors);
     }
@@ -121,11 +121,11 @@ if (isPost()) {
                     alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <?php 
-                if(!empty($msg) && !empty($msg_type)){
+                <?php
+                if (!empty($msg) && !empty($msg_type)) {
                     getMsg($msg, $msg_type);
                 }
-                 ?>
+                ?>
                 <form method="POST" action="" enctype="multipart/form-data">
                     <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                         <h2 class="fw-normal mb-5 me-3">Đăng nhập hệ thống</h2>
@@ -133,41 +133,39 @@ if (isPost()) {
                     <!-- Họ tên -->
                     <div data-mdb-input-init class="form-outline mb-4">
                         <input name="fullname" type="text" class="form-control form-control-lg" value="<?php
-                            if(!empty($oldData)){
-                                echo oldData($oldData, 'fullname');
-                            }
-                             ?>" placeholder="Họ tên" />
+                                                                                                        if (!empty($oldData)) {
+                                                                                                            echo oldData($oldData, 'fullname');
+                                                                                                        }
+                                                                                                        ?>" placeholder="Họ tên" />
                         <?php
-                        if(!empty($errors)){
-                             echo formErorrs($errorsArr, 'fullname');
+                        if (!empty($errors)) {
+                            echo formErorrs($errorsArr, 'fullname');
                         }
                         ?>
                     </div>
                     <!-- Email -->
                     <div data-mdb-input-init class="form-outline mb-4">
-                        <input name="email" type="text" class="form-control form-control-lg"
-                            value="<?php 
-                            if(!empty($oldData)){
-                                echo oldData($oldData, 'email');
-                            }
-                            ?>" placeholder="Địa chỉ email" />
-                        <?php 
-                        if(!empty($errors)){
-                            echo formErorrs($errorsArr, 'email');   
+                        <input name="email" type="text" class="form-control form-control-lg" value="<?php
+                                                                                                    if (!empty($oldData)) {
+                                                                                                        echo oldData($oldData, 'email');
+                                                                                                    }
+                                                                                                    ?>" placeholder="Địa chỉ email" />
+                        <?php
+                        if (!empty($errors)) {
+                            echo formErorrs($errorsArr, 'email');
                         }
                         ?>
                     </div>
                     <!-- Phone -->
                     <div data-mdb-input-init class="form-outline mb-4">
-                        <input name="phone" type="text" class="form-control form-control-lg"
-                            value="<?php 
-                            if(!empty($oldData)){
-                                 echo oldData($oldData ?? [], 'phone');
-                            }
-                            ?>" placeholder="Nhập số điện thoại" />
-                        <?php 
-                        if(!empty($errorsArr)){
-                            echo formErorrs($errorsArr, 'phone'); 
+                        <input name="phone" type="text" class="form-control form-control-lg" value="<?php
+                                                                                                    if (!empty($oldData)) {
+                                                                                                        echo oldData($oldData ?? [], 'phone');
+                                                                                                    }
+                                                                                                    ?>" placeholder="Nhập số điện thoại" />
+                        <?php
+                        if (!empty($errorsArr)) {
+                            echo formErorrs($errorsArr, 'phone');
                         }
                         ?>
                     </div>
@@ -175,9 +173,9 @@ if (isPost()) {
                     <div data-mdb-input-init class="form-outline mb-3">
                         <input name="password" type="password" id="form3Example4" class="form-control form-control-lg"
                             placeholder="Nhập mật khẩu">
-                        <?php 
-                        if(!empty($errors)){
-                            echo formErorrs($errorsArr, 'password'); 
+                        <?php
+                        if (!empty($errors)) {
+                            echo formErorrs($errorsArr, 'password');
                         }
                         ?>
                     </div>
@@ -185,9 +183,9 @@ if (isPost()) {
                     <div data-mdb-input-init class="form-outline mb-3">
                         <input name="comfirm_pass" type="password" id="form3Example4"
                             class="form-control form-control-lg" placeholder="Nhập lại mật khẩu">
-                        <?php 
-                        if(!empty($errors)){
-                             echo formErorrs($errorsArr ?? [], 'comfirm_pass'); 
+                        <?php
+                        if (!empty($errors)) {
+                            echo formErorrs($errorsArr ?? [], 'comfirm_pass');
                         }
                         ?>
                     </div>
@@ -196,7 +194,7 @@ if (isPost()) {
                             style="padding-left: 2.5rem; padding-right: 2.5rem;">Đăng
                             ký</button>
                         <p class="small fw-bold mt-2 pt-1 mb-0">Bạn đã có tài khoản? <a
-                                href="<?php echo _HOST_URL;?>?module=auth&action=login" class="link-danger">Đăng
+                                href="<?php echo _HOST_URL; ?>?module=auth&action=login" class="link-danger">Đăng
                                 nhập ngay</a></p>
                     </div>
                 </form>

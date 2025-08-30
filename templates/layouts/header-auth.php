@@ -5,9 +5,10 @@ if (!defined('_HAU')) {
 ?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title><?php echo $data['title']?></title>
+    <title><?php echo $data['title'] ?></title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE v4 | Dashboard" />
@@ -25,8 +26,8 @@ if (!defined('_HAU')) {
         integrity="sha256-9kPW/n5nn53j4WMRYAxe9c1rCY96Oogo/MKSVdKzPmI=" crossorigin="anonymous" />
     <!--end::Third Party Plugin(Bootstrap Icons)-->
     <!--begin::Required Plugin(AdminLTE)-->
-    <link rel="stylesheet" href="<?php echo _HOST_URL_TEMPLATES;?>/assets/css/adminlte.css" />
-    <link rel="stylesheet" href="<?php echo _HOST_URL_TEMPLATES;?>/assets/css/login.css?ver=<?php rand() ?>" />
+    <link rel="stylesheet" href="<?php echo _HOST_URL_TEMPLATES; ?>/assets/css/adminlte.css" />
+    <link rel="stylesheet" href="<?php echo _HOST_URL_TEMPLATES; ?>/assets/css/login.css?ver=<?php rand() ?>" />
     <!--end::Required Plugin(AdminLTE)-->
     <!-- apexcharts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css"

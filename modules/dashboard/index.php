@@ -2,15 +2,15 @@
 if (!defined('_HAU')) {
     die('Truy cập không hợp lệ');
 }
-  $data = [
+$data = [
     'title' => 'Hệ thống TrungHau'
-  ];
-  layout('header',$data);
-  layout('sidebar')
+];
+layout('header', $data);
+layout('sidebar')
 ?>
 <!--begin::App Main-->
 <main class="app-main">
-    <?php layout('breadcrumb')?>
+    <?php layout('breadcrumb') ?>
     <!--begin::App Content-->
     <div class="app-content">
         <!--begin::Container-->
@@ -112,6 +112,6 @@ if (!defined('_HAU')) {
     <!--end::App Content-->
 </main>
 <!--end::App Main-->
-<?php 
-    layout('footer');
+<?php
+layout('footer');
 ?>

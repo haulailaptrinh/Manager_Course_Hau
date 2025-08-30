@@ -42,14 +42,16 @@ function removeSession($key = '')
 }
 
 // Tạo session flash
-function setSessionFlash($key,$value){
+function setSessionFlash($key, $value)
+{
     $key = $key . 'Flash';
-    $rel = setSession($key,$value);
+    $rel = setSession($key, $value);
     return $rel;
 }
 
 //  Lấy sesion flash
-function getSessionFlash($key){
+function getSessionFlash($key)
+{
     $key = $key . 'Flash';
     $rel = getSession($key);
     removeSession($key);

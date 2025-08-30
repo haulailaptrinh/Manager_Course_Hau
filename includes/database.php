@@ -24,13 +24,14 @@ function getOne($sql)
 }
 
 // Đếm số lượng dòng
-function getRows($sql){
+function getRows($sql)
+{
     global $conn;
-    $stm = $conn -> prepare($sql);
-    $stm -> execute();
-    $result = $stm -> rowCount();
+    $stm = $conn->prepare($sql);
+    $stm->execute();
+    $result = $stm->rowCount();
     return $result;
-} 
+}
 
 // Insert dữ liệu
 function insert($table, $data)
@@ -38,47 +39,49 @@ function insert($table, $data)
     global $conn;
     $keys = array_keys($data);
     $cot = implode(',', $keys);
-    $place = ':' . implode(',:',$keys);
+    $place = ':' . implode(',:', $keys);
     $sql = "INSERT INTO  $table($cot) VALUES($place)";
-    $stm = $conn -> prepare($sql);
-    $rel = $stm -> execute($data);
+    $stm = $conn->prepare($sql);
+    $rel = $stm->execute($data);
     return $rel;
 }
 
 // Update dữ liệu
-function update($table,$data,$condition=''){
+function update($table, $data, $condition = '')
+{
     global $conn;
     $update = '';
-    foreach($data as $key => $value){
+    foreach ($data as $key => $value) {
         $update .= $key . "=:" . $key . ',';
     }
-    $update = trim($update,',');
-    if(!empty($condition)){
+    $update = trim($update, ',');
+    if (!empty($condition)) {
         $sql = "UPDATE $table SET $update WHERE $condition";
-    }else{
+    } else {
         $sql = "UPDATE $table SET $update";
     }
-    $stm = $conn -> prepare($sql);
-    $rel=  $stm -> execute($data);
+    $stm = $conn->prepare($sql);
+    $rel =  $stm->execute($data);
     return $rel;
 }
 
 // Delete dữ liệu
-function delete($table,$condiction){
+function delete($table, $condiction)
+{
     global $conn;
-    if(!empty($condition)){
+    if (!empty($condition)) {
         $sql = "DELETE FROM $table WHERE $condiction";
-    }else{
-         $sql = "DELETE FROM $table";
+    } else {
+        $sql = "DELETE FROM $table";
     }
-    $stm = $conn -> prepare($sql);
-    $rel = $stm -> execute();
+    $stm = $conn->prepare($sql);
+    $rel = $stm->execute();
     return $rel;
 }
 
 // Hàm lấy id dữ liệu mới insert
-function lastID(){
+function lastID()
+{
     global $conn;
-    return $conn -> lastInsertId();
+    return $conn->lastInsertId();
 }
-

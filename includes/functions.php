@@ -44,7 +44,6 @@ function sendMail($emailTo, $subject, $content)
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
-
 }
 // Kiểm tra phương thức post
 function isPost()
@@ -174,16 +173,18 @@ function formErorrs($erorrs, $fieldName)
 }
 
 // Hiện thị lại dữ liệu cũ
-function oldData($oldData,$fieldName){
+function oldData($oldData, $fieldName)
+{
     return (!empty($oldData[$fieldName])) ? $oldData[$fieldName] : null;
 }
 
 // Hàm chuyển hướng 
-function redirect($path, $pathFull = false){
-    if($pathFull){
+function redirect($path, $pathFull = false)
+{
+    if ($pathFull) {
         header("Localtion: $path");
         exit();
-    }else{
+    } else {
         $url = _HOST_URL . $path;
         header("Location: $url");
         exit();
@@ -191,13 +192,14 @@ function redirect($path, $pathFull = false){
 }
 
 // Hàm checklogin
-function isLogin(){
+function isLogin()
+{
     $checkLogin = false;
     $tokenLogin = getSessionFlash('token_login');
     $checkToken = getOne("SELECT * FROM token_login WHERE token = '$tokenLogin'");
-    if(!empty($checkToken)){
+    if (!empty($checkToken)) {
         $checkLogin = true;
-    }else{
+    } else {
         removeSession('token_login');
     }
     return $checkLogin;
