@@ -71,7 +71,7 @@ if (isPost()) {
                         $data = [
                             'user_id' => $checkEmail['id'],
                             'token' => $token,
-                            'created_at' => date('Y:m:d H:i:s')
+                            'created_at' => date('Y-m-d H:i:s')
                         ];
                         $insertToken = insert('token_login', $data);
                         if ($insertToken) {
